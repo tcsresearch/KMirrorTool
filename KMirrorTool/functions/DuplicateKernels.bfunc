@@ -1,0 +1,2 @@
+fdupes --noprompt --delete $KDir/$UpdatesDir $KDir/$UpdatesTestingDir
+

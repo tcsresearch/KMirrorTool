@@ -1,0 +1,45 @@
+TASKS TO BE STARTED
+
+- Enable deletion function in ExpiredKernels.sh
+- Finish migration of code into config and functions folders.
+
+- Relocate universal functions such as NewLine and DisplayLine to KMirrorTool.bfunc
+	eventually relocate again into BLING.
+
+- Change DisplayBanner function so each module has a unique DisplayBanner function to call.
+	e.g. DisplayBanner_DuplicateKernels, DisplayBanner_ExpiredKernels, DisplayBanner_RCKernels
+
+- TEST EVERYTHING!
+
+- BLING / Cecho Integration
+ 
+PENDING TASKS IN PROGRESS
+
+-Integrate all completed tasks into a master script(KMirrorTool).
+	Include DisplaySizes.sh and GetLatestKernelSources-v2.sh as functions.
+	DuplicateKernels.sh---->DuplicateKernels.bfunc
+	ExpiredKernels.sh------->ExpiredKernels.bfunc	
+	RCKernels.sh--------------->RCKernels.bfunc
+
+
+COMPLETED TASKS
+
+-Create maintenence script (DuplicateKernels.sh) to diff the 'updates' and 'updates-testing' via a for loop.
+  use the results to delete identical files already contained as 'updates' from 'updates-testing'.
+  allow for files that exist only in one of the 2 folders.
+
+-Create another maintenence script (ExpiredKernels.sh) to delete any files more than x days old (e.g. 90 days).
+  make this x days old a configurable variable.
+
+-Create a 3rd maintenence script(RCKernels.sh)  to remove any -rc based SRPMs from the 'rawhide' folder.
+  use something like 'll $RawhideFolder | grep 'rc0' > rc-kernels.list and then
+	rm -fv `cat rc-kernels.list`
+        IMPORTANT: we must ensure that 'rc' is NOT the search string, as ALL files will match based on them having src.rpm extensions.
+	How do we grep this properly?  We don't want to do rc0, rc1, etc.
+		We should see if we can ll without the .src.rpm part (strip it from the results and then check via grep).
+		TEST RESULTS
+			grep .rc will still highlight the .src.rpm section and thus flag for deletion.
+			However, grep using .rc0, .rc1, etc will fix this.
+			Should we create a grep function that greps rc0 thru rc8?
+
+
