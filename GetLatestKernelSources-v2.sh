@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "Kernel Fetcher v 0.2 - (c) 2024 TCS Research.  All Rights Reserved."
 echo " "
 
