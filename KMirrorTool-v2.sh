@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ### First, source our configs ###
 
 for $conf in config/*.conf do
