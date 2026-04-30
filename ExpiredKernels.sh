@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 
 # find is the common tool for this kind of task :
 
