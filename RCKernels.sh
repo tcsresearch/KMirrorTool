@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Kernel Mirror Cleaning Tool #
 #
 # TODO
