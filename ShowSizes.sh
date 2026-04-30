@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ### Functions ###
 function DisplayLine() {
 	echo "__________________________________________________________________"
