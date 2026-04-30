@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 sh GetLatestKernelSources-v2.sh
 sh DuplicateKernels.sh
 sh ExpiredKernels.sh
