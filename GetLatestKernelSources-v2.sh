@@ -7,7 +7,7 @@ echo " "
 
 function EnterKDir() {
 	echo "Entering Kernels Directory..."
-	cd _Kernels
+	cd _Kernels || return
 	pwd
 }
 
@@ -29,7 +29,7 @@ function FetchKernels() {
 function ExitKDir() {
 
 	echo "Reverting to Main User Folder..."
-	cd -
+	cd - || return
 	## pwd
 }
 
