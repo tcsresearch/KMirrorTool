@@ -32,14 +32,14 @@ function DisplayBanner() {
 function EnterKDir() {
 	NewLine
         echo "Entering Kernels Directory..."
-        cd _Kernels
+        cd _Kernels || return
         pwd
 }
 
 function ExitKDir() {
 	NewLine
         echo "Reverting to Main User Folder..."
-        cd -
+        cd - || return
         ## pwd
 }
 
