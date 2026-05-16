@@ -45,8 +45,8 @@ function ExitKDir() {
 
 
 function SanityCheck_FolderExists() {
-	if [ ! -d $ExpiryFolder ]; then
-		echo "EREOR: $ExpiryFolder not found...exiting."
+	if [ ! -d "$ExpiryFolder" ]; then
+		echo "ERROR: $ExpiryFolder not found...exiting."
 		exit 1
 	fi
 }
