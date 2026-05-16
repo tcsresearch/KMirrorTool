@@ -78,7 +78,7 @@ function DoGrepKernels2() {
 
 function DoGrepKernels3() {
 	echo "Entering $RCKFolder..."
-	cd $RCKFolder
+	cd $RCKFolder || return
         echo "Generating list of -rc Kernels..."
         $bls  | grep rc0 > RCKList # Establish new file.
         $bls  | grep rc1 >> RCKList
@@ -97,7 +97,7 @@ function DoGrepKernels3() {
 
 function RevertFolder() {
 	echo "Reverting to main program folder..."
-	cd -
+	cd - || return
 	echo " "
 }
 
