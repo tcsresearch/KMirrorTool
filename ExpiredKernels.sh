@@ -57,20 +57,20 @@ function DoExpiryDeletion() {
 	### Original Working Code Concept
 	# find ./my_dir -mtime +10 -type f -delete
 
-        for i in $(cat repos.list);  do
+        for i in "$(cat repos.list)";  do
                 # for kernel in updates updates-testing rawhide do; {
                 echo " "
                 echo "#####     Purging Expired Kernels From Repo: ${i}...    #####"
-                cd $i > /dev/null
+                cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
 		# find $i -mtime +$ExpiryTime -type f -delete
 		### find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
 		echo "Displaying List Of Expired Kernels Before Deltion:"
 		cat ExpiredKernels.list
 		echo "Do you wish to delete expired kernels now?"
-		# Insert wait command with input request here.
+		# TODO: Insert wait command with input request here.
 		rm -v `cat ExpiredKernels.list`
 		echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
-                cd - > /dev/null
+                cd - > /dev/null || return # Added double pipe return to fix SC2164
                 echo " "
         done
 }
@@ -81,39 +81,39 @@ function DoExpiryDeletion2() {
         ### Original Working Code Concept
         # find ./my_dir -mtime +10 -type f -delete
 
-        for i in $(cat repos.list);  do
+        for i in "$(cat repos.list)";  do
                 # for kernel in updates updates-testing rawhide do; {
                 echo " "
                 echo "#####     Purging Expired Kernels From Repo: ${i}...    #####"
-                cd $i > /dev/null
+                cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
                 # find $i -mtime +$ExpiryTime -type f -delete
                 # find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
                 echo "Displaying List Of Expired Kernels Before Deltion:"
                 cat ExpiredKernels.list
                 echo "Do you wish to delete expired kernels now?"
-                # Insert wait command with input request here.
-                rm -v `cat ExpiredKernels.list`
+                # TODO: Insert wait command with input request here.
+                rm -v "$(cat ExpiredKernels.list)"
                 echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
 		rm -f ExpiredKernels.list
-                cd - > /dev/null
+                cd - > /dev/null || return # Added double pipe return to fix SC2164
                 echo " "
         done
 }
 
 
 function FindExpiredKFiles() {
-	for i in $(cat repos.list);  do
+	for i in "$(cat repos.list)";  do
                   # for kernel in updates updates-testing rawhide do; {
                   echo " "
                   echo "#####     Generating List Of Expired Kernels From Repo: ${i}...    #####"
-                  cd $i > /dev/null
+                  cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
                   # find $i -mtime +$ExpiryTime -type f
 		  find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
 		  # echo "#####     List Generated From Repo: ${i}.     #####"
                   echo " "
 		  # echo "Displaying List Of Expired Kernels:"
                   cat ExpiredKernels.list
-		  cd - > /dev/null
+		  cd - > /dev/null || return # Added double pipe return to fix SC2164
                   echo " "
           done
  
@@ -139,7 +139,7 @@ EnterKDir
 FindExpiredKFiles
 ### TAKE CAUTION Running Below Function!!!
 #
-## DoExpiryDelettion2
+## DoExpiryDeletion2
 #
 ExitKDir
 
