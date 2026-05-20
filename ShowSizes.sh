@@ -15,7 +15,7 @@ ShowEmptyLine
 DisplayLine
 ShowEmptyLine
 echo "Displaying Sizes of KFolders: "
-du -sh `cat KFolders.list`
+du -sh $(cat KFolders.list)
 ShowEmptyLine
 DisplayLine
 ShowEmptyLine
