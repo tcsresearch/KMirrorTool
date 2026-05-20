@@ -47,7 +47,7 @@ function DisplayBanner() {
 
 function DoGrepKernels3() {
 	echo "Entering $RCKFolder..."
-	cd $RCKFolder || return
+	cd "$RCKFolder" || return
         echo "Generating list of -rc Kernels..."
         $bls  | grep rc0 > RCKList # Establish new file.
         $bls  | grep rc1 >> RCKList
