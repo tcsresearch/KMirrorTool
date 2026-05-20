@@ -59,25 +59,6 @@ function SanityCheck_FolderExists() {
 # Find Expired Files #																													#
 #########################################################################################################################################
 
-function GenerateExpiredKernelsListFile() {  ## This may be a redundant function to FindExpiredKFiles().
-        # Use repos.list ?
-
-        ### Original Working Code Concept
-        # find ./my_dir -mtime +10 -type f -delete
-
-        for i in "$(cat repos.list)";  do
-                # for kernel in updates updates-testing rawhide do; {
-                echo " "
-                echo "#####     Searching For Expired Kernels From Repo: ${i}...    #####"
-                cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
-                # find $i -mtime +$ExpiryTime -type f -delete
-                # find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
-                echo "Displaying List Of Expired Kernels Before Deletion:"
-                cat ExpiredKernels.list
-        }
-
-
-
 function FindExpiredKFiles() {
 	for i in "$(cat repos.list)";  do
                   # for kernel in updates updates-testing rawhide do; {
