@@ -5,6 +5,7 @@
 function KMT_SourceConfigs() {
 	shopt -s nullglob	# prevents literal matches if no files exist.
 	for conf in config/*.conf; do
+		# shellcheck source=/dev/null
 		source "$conf"
 	done
 
@@ -15,6 +16,7 @@ function KMT_SourceConfigs() {
 function KMT_SourceFunctions() {
 	shopt -s nullglob	# prevents literal matches if no files exist.
 	for func in functions/*.bfunc; do
+		# shellcheck source=/dev/null
 		source "$bfunc"
 	done
 
