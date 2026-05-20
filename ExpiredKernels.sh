@@ -126,7 +126,7 @@ function DoExpiryDeletion() {
 		cat ExpiredKernels.list
 		echo "Do you wish to delete expired kernels now?"
 		# TODO: Insert wait command with input request here.
-		rm -v `cat ExpiredKernels.list`
+		rm -v "$(cat ExpiredKernels.list)"
 		echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
                 cd - > /dev/null || return # Added double pipe return to fix SC2164
                 echo " "
