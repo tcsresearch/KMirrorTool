@@ -64,7 +64,7 @@ function DoExpiryDeletion() {
                 cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
 		# find $i -mtime +$ExpiryTime -type f -delete
 		### find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
-		echo "Displaying List Of Expired Kernels Before Deltion:"
+		echo "Displaying List Of Expired Kernels Before Deletion:"
 		cat ExpiredKernels.list
 		echo "Do you wish to delete expired kernels now?"
 		# TODO: Insert wait command with input request here.
@@ -88,7 +88,7 @@ function DoExpiryDeletion2() {
                 cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
                 # find $i -mtime +$ExpiryTime -type f -delete
                 # find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
-                echo "Displaying List Of Expired Kernels Before Deltion:"
+                echo "Displaying List Of Expired Kernels Before Deletion:"
                 cat ExpiredKernels.list
                 echo "Do you wish to delete expired kernels now?"
                 # TODO: Insert wait command with input request here.
