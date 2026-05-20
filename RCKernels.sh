@@ -104,7 +104,7 @@ function RevertFolder() {
 function DeleteRCKernels() {
 	echo "Current Folder: $CurrentFolder"
 	echo "Deleteing RC Kernels..."
-	rm -fv `cat RCKList`
+	rm -fv "$(cat RCKList)"
 	echo "Finished removal of RC Kernels."
 }
 
