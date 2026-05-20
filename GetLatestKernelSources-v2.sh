@@ -12,22 +12,21 @@ function EnterKDir() {
 }
 
 function FetchKernels() {
-	for i in $(cat repos.list);  do
+	for i in $(cat repos.list);  do (
 		# for kernel in updates updates-testing rawhide do; {
 		echo " "
 		echo "#####     Fetching Latest Kernel From Repo: ${i}...    #####"
-		cd $i > /dev/null
+		cd "$i" > /dev/null || return
 		# sh Update.sh
 		# May be redundant entry for repo: updates
-		dnf download --source kernel --enablerepo=$i
+		dnf download --source kernel --enablerepo="$i"
 		echo "#####     Sucessfully Fetched Latest Kernel From Repo: ${i}.     #####"
-		cd - > /dev/null
-		echo " "
+		cd - > /dev/null || return
+		echo " " )
 	done
 }
 
 function ExitKDir() {
-
 	echo "Reverting to Main User Folder..."
 	cd - || return
 	## pwd
