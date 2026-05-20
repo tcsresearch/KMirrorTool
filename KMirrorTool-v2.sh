@@ -4,6 +4,7 @@
 
 function KMT_SourceConfigs() {
 	shopt -s nullglob	# prevents literal matches if no files exist.
+	# shellcheck disable=SC2034  # Unused variables left for readability
 	for conf in config/*.conf; do
 		# shellcheck source=/dev/null
 		source "$conf"
@@ -15,6 +16,7 @@ function KMT_SourceConfigs() {
 ### Next, we source our functions ###
 function KMT_SourceFunctions() {
 	shopt -s nullglob	# prevents literal matches if no files exist.
+	# shellcheck disable=SC2034  # Unused variables left for readability
 	for func in functions/*.bfunc; do
 		# shellcheck source=/dev/null
 		source "$bfunc"
