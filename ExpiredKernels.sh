@@ -35,7 +35,7 @@ function EnterKDir() {
 	NewLine
         echo "Entering Kernels Directory..."
         # cd _Kernels || return
-        cd $ExpiryFolder || return # New Testing May 2026.
+        cd "$ExpiryFolder" || return # New Testing May 2026.
 		pwd
 }
 
@@ -66,7 +66,7 @@ function FindExpiredKFiles() {
                   echo "#####     Generating List Of Expired Kernels From Repo: ${i}...    #####"
                   cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
                   # find $i -mtime +$ExpiryTime -type f
-		  find -mtime +$ExpiryTime -type f | grep .src.rpm > ./ExpiredKernels.list
+		  find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
 		  # echo "#####     List Generated From Repo: ${i}.     #####"
                   echo " "
 		  # echo "Displaying List Of Expired Kernels:"
