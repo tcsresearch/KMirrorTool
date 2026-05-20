@@ -42,39 +42,8 @@ function DisplayBanner() {
 }
 
 
-function DoGrepKernels() {
-        echo "Generating list of -rc Kernels..."
-        ls -1 _Kernels/rawhide | grep rc0 > $RCKFolder/RCKList # Establish new file.
-        ls -1 _Kernels/rawhide | grep rc1 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc2 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc3 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc3 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc4 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc5 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc6 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc7 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc8 >> $RCKFolder/RCKList
-        ls -1 _Kernels/rawhide | grep rc9 >> $RCKFolder/RCKList # Likely not needed.
-        echo "List of RC Kernels Generated.  Displaying Contents.."
-        cat $RCKFolder/RCKList
-}
 
-function DoGrepKernels2() {
-	echo "Generating list of -rc Kernels..."
-	ls -1 $RCKFolder | grep rc0 > $RCKFolder/RCKList # Establish new file.
-	ls -1 $RCKFolder | grep rc1 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc2 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc3 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc3 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc4 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc5 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc6 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc7 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc8 >> $RCKFolder/RCKList
-	ls -1 $RCKFolder | grep rc9 >> $RCKFolder/RCKList # Likely not needed.
-	echo "List of RC Kernels Generated.  Displaying Contents.."
-	cat $RCKFolder/RCKList
-}
+
 
 function DoGrepKernels3() {
 	echo "Entering $RCKFolder..."
@@ -113,8 +82,6 @@ function DeleteRCKernels() {
 
 ### Main Program ###
 DisplayBanner
-# DoGrepKernels  
-# DoGrepKernels2
 DoGrepKernels3
 SanityCheck_DoesListExist
 DeleteRCKernels
