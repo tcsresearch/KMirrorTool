@@ -5,8 +5,8 @@
 # find is the common tool for this kind of task :
 
 ### Define Variables ###
-ExpiryFolder='$(pwd)/_Kernels' # TESTING!
-ExpiryTime='30' # Specify in days
+ExpiryFolder="$(pwd)/_Kernels" # TESTING!
+ExpiryTime="30" # Specify in days
 
 ### Functions ###
 
