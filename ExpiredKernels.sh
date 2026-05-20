@@ -159,14 +159,13 @@ function DoExpiryDeletion2() {
 }
 
 
-		function DoExpiryDeletetion4() {
+	function DoExpiryDeletetion4() {
 				rm -iv "$(cat ExpiredKernels.list)" # Added -iv vs -v for added sanity checking during testing.
                 echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
 				rm -f ExpiredKernels.list
                 cd - > /dev/null || return # Added double pipe return to fix SC2164
                 echo " "
-        done
-}
+        }
 
 #############################################################################################################
 #### README ###																								#
