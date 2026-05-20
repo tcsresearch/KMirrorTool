@@ -64,6 +64,18 @@ function DoGrepKernels3() {
         cat RCKList
 }
 
+
+
+function DoGrepKernels4() {
+	> RCKList # Creates a new file or overwrites the existing one
+
+	# Loop through rc0 to rc3 and append matches to the file
+	for i in {0..9}; do
+  		$bls | grep "rc$i" >> RCKList
+	done
+}
+
+
 function RevertFolder() {
 	echo "Reverting to main program folder..."
 	cd - || return
@@ -82,7 +94,8 @@ function DeleteRCKernels() {
 
 ### Main Program ###
 DisplayBanner
-DoGrepKernels3
+# DoGrepKernels3
+DoGrepKernels4
 SanityCheck_DoesListExist
 DeleteRCKernels
 DeleteList
