@@ -42,30 +42,6 @@ function DisplayBanner() {
 }
 
 
-
-
-
-function DoGrepKernels3() {
-	echo "Entering $RCKFolder..."
-	cd "$RCKFolder" || return
-        echo "Generating list of -rc Kernels..."
-        $bls  | grep rc0 > RCKList # Establish new file.
-        $bls  | grep rc1 >> RCKList
-        $bls  | grep rc2 >> RCKList
-        $bls  | grep rc3 >> RCKList
-        $bls  | grep rc3 >> RCKList
-        $bls  | grep rc4 >> RCKList
-        $bls  | grep rc5 >> RCKList
-        $bls  | grep rc6 >> RCKList
-        $bls  | grep rc7 >> RCKList
-        $bls  | grep rc8 >> RCKList
-        $bls  | grep rc9 >> RCKList # Likely not needed.
-        echo "List of RC Kernels Generated.  Displaying Contents.."
-        cat RCKList
-}
-
-
-
 function DoGrepKernels4() {
 	for i in {0..9}; do $bls | grep "rc$i"; done > RCKList
 }
