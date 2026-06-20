@@ -67,7 +67,7 @@ function FindExpiredKFiles() {
                 cd "$i" > /dev/null || return # Added double pipe return to fix SC2164
                 # find $i -mtime +$ExpiryTime -type f
 		  		## Replaced 05/20/26: find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
-		  		find $ExpiryFolder -type f -mtime +"$ExpiryTime" -name "*.src.rpm" > ExpiredKernels.list
+		  		find "$ExpiryFolder" -type f -mtime +"$ExpiryTime" -name "*.src.rpm" > ExpiredKernels.list
 		  		# echo "#####     List Generated From Repo: ${i}.     #####"
                 echo " "
 		  		# echo "Displaying List Of Expired Kernels:"
