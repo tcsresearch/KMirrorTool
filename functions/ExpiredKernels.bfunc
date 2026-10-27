@@ -1,4 +1,6 @@
+#!/bin/env bash
 
+# shellcheck source=/dev/null
 
 # find is the common tool for this kind of task :
 
@@ -32,22 +34,22 @@ function DisplayBanner() {
 function EnterKDir() {
 	NewLine
         echo "Entering Kernels Directory..."
-        cd _Kernels
+        cd _Kernels || return
         pwd
 }
 
 function ExitKDir() {
 	NewLine
         echo "Reverting to Main User Folder..."
-        cd -
+        cd - || return
         ## pwd
 }
 
 
 function SanityCheck_FolderExists() {
-	if [ ! -d $ExpiryFolder ]; then
+	if [ ! -d "$ExpiryFolder" ]; then
 		echo "EREOR: $ExpiryFolder not found...exiting."
-		exit 1
+		return 1
 	fi
 }
 
@@ -57,22 +59,26 @@ function DoExpiryDeletion() {
 	### Original Working Code Concept
 	# find ./my_dir -mtime +10 -type f -delete
 
-        for i in $(cat repos.list);  do
-                # for kernel in updates updates-testing rawhide do; {
-                echo " "
-                echo "#####     Purging Expired Kernels From Repo: ${i}...    #####"
-                cd $i > /dev/null
-		# find $i -mtime +$ExpiryTime -type f -delete
-		### find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
-		echo "Displaying List Of Expired Kernels Before Deltion:"
-		cat ExpiredKernels.list
-		echo "Do you wish to delete expired kernels now?"
-		# Insert wait command with input request here.
-		rm -v `cat ExpiredKernels.list`
-		echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
-                cd - > /dev/null
-                echo " "
-        done
+       # for i in $(cat repos.list);  do
+		while IFS= read -r line
+		do
+        # for kernel in updates updates-testing rawhide do; {
+        	echo " "
+            echo "#####     Purging Expired Kernels From Repo: ${i}...    #####"
+            cd "$i" > /dev/null || return
+
+			# find $i -mtime +$ExpiryTime -type f -delete
+			### find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
+			echo "Displaying List Of Expired Kernels Before Deltion:"
+			cat ExpiredKernels.list
+			
+			echo "Do you wish to delete expired kernels now?"
+			# Insert wait command with input request here.
+			rm -v `cat ExpiredKernels.list`
+			echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
+            cd - > /dev/null || return
+            echo " "
+        done < repos.list
 }
 
 function DoExpiryDeletion2() {
@@ -81,41 +87,51 @@ function DoExpiryDeletion2() {
         ### Original Working Code Concept
         # find ./my_dir -mtime +10 -type f -delete
 
-        for i in $(cat repos.list);  do
+       # for i in $(cat repos.list);  do
+		while IFS= read -r line
+		do
                 # for kernel in updates updates-testing rawhide do; {
                 echo " "
                 echo "#####     Purging Expired Kernels From Repo: ${i}...    #####"
-                cd $i > /dev/null
+                cd "$i" > /dev/null || return
+
                 # find $i -mtime +$ExpiryTime -type f -delete
                 # find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
                 echo "Displaying List Of Expired Kernels Before Deltion:"
                 cat ExpiredKernels.list
+
                 echo "Do you wish to delete expired kernels now?"
                 # Insert wait command with input request here.
                 rm -v `cat ExpiredKernels.list`
                 echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
-		rm -f ExpiredKernels.list
-                cd - > /dev/null
+				
+				rm -f ExpiredKernels.list
+                cd - > /dev/null || return
                 echo " "
-        done
+        done < repos.list
 }
 
 
 function FindExpiredKFiles() {
-	for i in $(cat repos.list);  do
-                  # for kernel in updates updates-testing rawhide do; {
-                  echo " "
-                  echo "#####     Generating List Of Expired Kernels From Repo: ${i}...    #####"
-                  cd $i > /dev/null
-                  # find $i -mtime +$ExpiryTime -type f
-		  find -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
-		  # echo "#####     List Generated From Repo: ${i}.     #####"
-                  echo " "
-		  # echo "Displaying List Of Expired Kernels:"
-                  cat ExpiredKernels.list
-		  cd - > /dev/null
-                  echo " "
-          done
+	# for i in $(cat repos.list);  do
+	while IFS= read -r line
+	do
+    	# for kernel in updates updates-testing rawhide do; {
+        echo " "
+        echo "#####     Generating List Of Expired Kernels From Repo: ${i}...    #####"
+        cd "$i" > /dev/null || return
+
+        # find $i -mtime +$ExpiryTime -type f
+		find . -mtime +$ExpiryTime -type f | grep .src.rpm > ExpiredKernels.list
+		# echo "#####     List Generated From Repo: ${i}.     #####"
+        echo " "
+		
+		# echo "Displaying List Of Expired Kernels:"
+        cat ExpiredKernels.list
+		
+		cd - > /dev/null || return
+        echo " "
+    done < repos.list
  
 }
 
