@@ -14,12 +14,12 @@ function FetchKernels() {
 		# for kernel in updates updates-testing rawhide do; {
 		echo " "
 		echo "#####     Fetching Latest Kernel From Repo: ${i}...    #####"
-		cd $i > /dev/null
+		cd "$i" > /dev/null || return
 		# sh Update.sh
 		# May be redundant entry for repo: updates
 		dnf download --source kernel --enablerepo=$i
 		echo "#####     Sucessfully Fetched Latest Kernel From Repo: ${i}.     #####"
-		cd - > /dev/null
+		cd - > /dev/null || return
 		echo " "
 	done
 }
@@ -27,7 +27,7 @@ function FetchKernels() {
 function ExitKDir() {
 
 	echo "Reverting to Main User Folder..."
-	cd -
+	cd - || return
 	## pwd
 }
 
