@@ -1,5 +1,8 @@
 #!/bin/env bash
 
+# shellcheck source=/dev/null
+# shellcheck disable=SC2010 
+
 # Kernel Mirror Cleaning Tool #
 #
 # TODO
