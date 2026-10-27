@@ -5,7 +5,7 @@ echo " "
 
 function EnterKDir() {
 	echo "Entering Kernels Directory..."
-	cd _Kernels
+	cd _Kernels || return
 	pwd
 }
 
