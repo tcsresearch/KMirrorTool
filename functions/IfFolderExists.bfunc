@@ -1,3 +1,5 @@
+#!/bin/env bash
+
 # 'Folder exists.' if the folder is present
 # 'Folder does not exist.' if the folder is not present
 
@@ -20,7 +22,7 @@ fi
 #
 foldernames=('/path/to/folder1' '/path/to/folder2' '/path/to/folder3')
 
-for foldername in ${foldernames[@]}; do
+for foldername in "${foldernames[@]}"; do
     if [ -d "$foldername" ]; then
         echo "$foldername exists."
     else
