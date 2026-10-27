@@ -74,7 +74,8 @@ function DoExpiryDeletion() {
 			
 			echo "Do you wish to delete expired kernels now?"
 			# Insert wait command with input request here.
-			rm -v `cat ExpiredKernels.list`
+			# rm -v `cat ExpiredKernels.list`
+			rm -v $(cat ExpiredKernels.list)
 			echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
             cd - > /dev/null || return
             echo " "
@@ -102,8 +103,9 @@ function DoExpiryDeletion2() {
 
                 echo "Do you wish to delete expired kernels now?"
                 # Insert wait command with input request here.
-                rm -v `cat ExpiredKernels.list`
-                echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
+                # rm -v `cat ExpiredKernels.list`
+                rm -v $(cat ExpiredKernels.list)
+				echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
 				
 				rm -f ExpiredKernels.list
                 cd - > /dev/null || return
