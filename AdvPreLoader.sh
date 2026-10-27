@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# shellcheck source=/dev/null
+# shellcheck disable=SC2119,SC2120
+
 # BLING PreLoader Utility
 PreLoader_Version="26.10"
 #	- Fixed output bug on Line 66: ${reset} was missing.
