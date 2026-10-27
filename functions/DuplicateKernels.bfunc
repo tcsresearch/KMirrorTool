@@ -1,2 +1,3 @@
-fdupes --noprompt --delete $KDir/$UpdatesDir $KDir/$UpdatesTestingDir
+fdupes --noprompt --delete "$KDir"/"$UpdatesDir" "$KDir"/"$UpdatesTestingDir"
+
 
