@@ -27,7 +27,9 @@ function EnterKDir() {
 }
 
 function FetchKernels() {
-	for i in $(cat repos.list);  do
+	# for i in $(cat repos.list);  do
+	while IFS= read -r line # Fixes SC2013.
+	do
 		# for kernel in updates updates-testing rawhide do; {
 		echo " "
 		# echo "#####     Fetching Latest Kernel From Repo: ${i}...    #####"
