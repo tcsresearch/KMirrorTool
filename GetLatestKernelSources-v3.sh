@@ -22,7 +22,7 @@ function SourceColorsFile() {
 
 function EnterKDir() {
 	echo "Entering Kernels Directory..."
-	cd _Kernels
+	cd _Kernels || return 1
 	pwd
 }
 
@@ -32,7 +32,7 @@ function FetchKernels() {
 		echo " "
 		# echo "#####     Fetching Latest Kernel From Repo: ${i}...    #####"
 		echo "${brightyellow} #####-----Fetching Latest Kernel From Repo: ${blue} ${i} ${brightyellow} ----- ##### ${reset} "
-		cd $i > /dev/null || return 1
+		cd "$i" > /dev/null || return 1
 		# sh Update.sh
 		# May be redundant entry for repo: updates
 		dnf download --source kernel --enablerepo="$i"
