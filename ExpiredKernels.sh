@@ -60,7 +60,8 @@ function SanityCheck_FolderExists() {
 #########################################################################################################################################
 
 function FindExpiredKFiles() {
-	for i in "$(cat repos.list)";  do
+	# for i in "$(cat repos.list)";  do
+	while IFS= read -r repo; do
                 # for kernel in updates updates-testing rawhide do; {
                 echo " "
                 echo "#####     Generating List Of Expired Kernels From Repo: ${i}...    #####"
@@ -74,7 +75,7 @@ function FindExpiredKFiles() {
                 cat ExpiredKernels.list
 		  		cd - > /dev/null || return # Added double pipe return to fix SC2164
                 echo " "
-          done
+          done < repos.list
  
 }
 
@@ -85,7 +86,7 @@ function FindExpiredKFiles() {
 ## Added Confirmation Y/N Function
 ConfirmYN() {
     while true; do
-        read -p "$1 [y/n]: " yn
+        read -rp "$1 [y/n]: " yn
         case $yn in
             [Yy]* ) return 0;; # Success
             [Nn]* ) return 1;; # Failure/No
@@ -116,7 +117,8 @@ function DoExpiryDeletion() {
 	### Original Working Code Concept
 	# find ./my_dir -mtime +10 -type f -delete
 
-        for i in "$(cat repos.list)";  do
+        # for i in "$(cat repos.list)";  do
+		while IFS= read -r repo; do
                 # for kernel in updates updates-testing rawhide do; {
                 echo " "
                 echo "#####     Preparing To Purge Expired Kernels From Repo: ${i}...    #####"
@@ -131,7 +133,7 @@ function DoExpiryDeletion() {
 		echo "#####     Sucessfully Purged Expired Kernels From Repo: ${i}.     #####"
                 cd - > /dev/null || return # Added double pipe return to fix SC2164
                 echo " "
-        done
+        done < repos.list
 }
 
 function DoExpiryDeletion2() {
@@ -140,7 +142,8 @@ function DoExpiryDeletion2() {
         ### Original Working Code Concept
         # find ./my_dir -mtime +10 -type f -delete
 
-        for i in "$(cat repos.list)";  do
+        # for i in "$(cat repos.list)";  do
+		while IFS= read -r repo; do
                 # for kernel in updates updates-testing rawhide do; {
                 echo " "
                 echo "#####     Purging Expired Kernels From Repo: ${i}...    #####"
@@ -156,7 +159,7 @@ function DoExpiryDeletion2() {
 		rm -f ExpiredKernels.list
                 cd - > /dev/null || return # Added double pipe return to fix SC2164
                 echo " "
-        done
+        done < repos.list
 }
 
 
