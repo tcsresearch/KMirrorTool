@@ -1,3 +1,5 @@
+#!/bin/env bash
+
 # Kernel Mirror Cleaning Tool #
 #
 # TODO
@@ -76,7 +78,7 @@ function DoGrepKernels2() {
 
 function DoGrepKernels3() {
 	echo "Entering $RCKFolder..."
-	cd $RCKFolder
+	cd $RCKFolder || return
         echo "Generating list of -rc Kernels..."
         $bls  | grep rc0 > RCKList # Establish new file.
         $bls  | grep rc1 >> RCKList
@@ -95,14 +97,15 @@ function DoGrepKernels3() {
 
 function RevertFolder() {
 	echo "Reverting to main program folder..."
-	cd -
+	cd - || return
 	echo " "
 }
 
 function DeleteRCKernels() {
 	echo "Current Folder: $CurrentFolder"
 	echo "Deleteing RC Kernels..."
-	rm -fv `cat RCKList`
+	# rm -fv `cat RCKList`
+	rm -fv $(cat RCKList)
 	echo "Finished removal of RC Kernels."
 }
 
