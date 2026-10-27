@@ -1,4 +1,6 @@
 #!/bin/env bash
 
-# This will pause until a button is pressed.
-read -rp "Press [Enter] to continue..."
+function Pause() {
+  # This will pause until a button is pressed.
+  read -rp "Press [Enter] to continue..."
+}
