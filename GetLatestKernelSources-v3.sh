@@ -1,3 +1,7 @@
+#!/bin/env bash
+
+# shellcheck source=/dev/null
+
 echo "Kernel Fetcher v 0.3 - (c) 2024 TCS Research.  All Rights Reserved."
 echo " "
 
@@ -28,13 +32,13 @@ function FetchKernels() {
 		echo " "
 		# echo "#####     Fetching Latest Kernel From Repo: ${i}...    #####"
 		echo "${brightyellow} #####-----Fetching Latest Kernel From Repo: ${blue} ${i} ${brightyellow} ----- ##### ${reset} "
-		cd $i > /dev/null
+		cd $i > /dev/null || return 1
 		# sh Update.sh
 		# May be redundant entry for repo: updates
-		dnf download --source kernel --enablerepo=$i
+		dnf download --source kernel --enablerepo="$i"
 		# echo "#####     Sucessfully Fetched Latest Kernel From Repo: ${i}.     #####"
 		echo "${brightyellow} #####-----Successfully Fetched Latest Kernel From Repo:${blue} ${i}. ${brightyellow} ----- ##### {$reset} "
-		cd - > /dev/null
+		cd - > /dev/null || return 1
 		echo " "
 	done
 }
@@ -42,7 +46,7 @@ function FetchKernels() {
 function ExitKDir() {
 
 	echo "Reverting to Main User Folder..."
-	cd -
+	cd - || return 1
 	## pwd
 }
 
