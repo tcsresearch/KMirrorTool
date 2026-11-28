@@ -4,6 +4,13 @@
 <h4> KMirrorTool - A Utility For Creating & Maintaining Kernel Repo Mirrors On Fedora </h4>
 <hr>
 
+<h3>Project Status</h3>
+<p>
+  <!-- SHELLCHECK_COMPLIANCE_START --> <strong>Shellcheck Date Of Compliance:</strong> Pending Execution <!-- SHELLCHECK_COMPLIANCE_END -->
+</p>
+
+<hr>
+
 > [!NOTE]
 > KMirrorTool is a BASH collection of functions for Fedora Linux users who want to create and manage their own repos and mirrors of various kernels.
 <hr>
